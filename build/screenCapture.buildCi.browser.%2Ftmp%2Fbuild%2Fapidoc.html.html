@@ -1,0 +1,726 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/g33kidd/node-dropbox#readme">node-dropbox (v0.1.8)</a>
+</h1>
+<h4>A simple Dropbox API client for node.js</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-dropbox">module node-dropbox</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.AccessToken">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>AccessToken
+            <span class="apidocSignatureSpan">(ckey, csecret, auth_code, redirect_url, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.Authenticate">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>Authenticate
+            <span class="apidocSignatureSpan">(ckey, csecret, redirect_uri, cb)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.Gruntfile">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>Gruntfile
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.api">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>api
+            <span class="apidocSignatureSpan">(access_token)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-dropbox.AccessToken">module node-dropbox.AccessToken</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.AccessToken.AccessToken">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>AccessToken
+            <span class="apidocSignatureSpan">(ckey, csecret, auth_code, redirect_url, cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-dropbox.Authenticate">module node-dropbox.Authenticate</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.Authenticate.Authenticate">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>Authenticate
+            <span class="apidocSignatureSpan">(ckey, csecret, redirect_uri, cb)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-dropbox.Gruntfile">module node-dropbox.Gruntfile</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.Gruntfile.Gruntfile">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>Gruntfile
+            <span class="apidocSignatureSpan">(grunt)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.node-dropbox.api">module node-dropbox.api</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.node-dropbox.api.api">
+            function <span class="apidocSignatureSpan">node-dropbox.</span>api
+            <span class="apidocSignatureSpan">(access_token)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-dropbox" id="apidoc.module.node-dropbox">module node-dropbox</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.AccessToken" id="apidoc.element.node-dropbox.AccessToken">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>AccessToken
+        <span class="apidocSignatureSpan">(ckey, csecret, auth_code, redirect_url, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">AccessToken = function (ckey, csecret, auth_code, redirect_url, cb) {
+  var url = apiRoot + '/oauth2/token';
+  var body = {
+    "code": auth_code,
+    "grant_type": "authorization_code",
+    "redirect_uri": redirect_url,
+    "client_id": ckey,
+    "client_secret": csecret
+  };
+
+  request.post(url, {form: body, json: true}, function(err, res, body) {
+    cb(err, body);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	node_dropbox.Authenticate('key', 'secret', 'redirect_url', function(err, url){
+		// redirect user to the url.
+		// looks like this: "https://www.dropbox.com/1/oauth2/authorize?client_id=&lt;key_here&gt;&amp;response_type=code&amp;
+;redirect_uri=&lt;redirect_url_here&gt;"
+	});
+
+On the page where you redirected to, you will need to use the AccessToken method to get the users access token for api use. The
+redirect_url this time is only for validation, it will not need to redirect again.
+
+	node_dropbox.<span class="apidocCodeKeywordSpan">AccessToken</span>('key', 'secret', 'access_code'
+;, 'redirect_url', function(err, body) {
+		access_token = body.access_token;
+	});
+
+#### Make API Calls
+
+When you have the access token in hand, all you need to do is make api calls. That's all it takes to get started with this
+client.
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.Authenticate" id="apidoc.element.node-dropbox.Authenticate">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>Authenticate
+        <span class="apidocSignatureSpan">(ckey, csecret, redirect_uri, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Authenticate = function (ckey, csecret, redirect_uri, cb) {
+  var err = "";
+  var redirect_url = "";
+
+  if(ckey === "" || csecret === "" || redirect_uri === "") {
+    err = "Missing client key and/or client secret key.";
+  }else{
+    redirect_url = authUrl + "client_id=" + ckey + "&amp;response_type=code&amp;redirect_uri=" + redirect_uri;
+  }
+
+  cb(err, redirect_url);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Before starting anything you need to go create your app over at: https://www.dropbox.com/developers/apps then go ahead and grab
+your Key and Secret.
+
+#### Authentication
+
+Just use the Authenticate method to generate a url for your user to go to. This will be redirected back to another page.
+
+	var node_dropbox = require('node-dropbox');
+	node_dropbox.<span class="apidocCodeKeywordSpan">Authenticate</span>('key', 'secret', 'redirect_url'
+;, function(err, url){
+		// redirect user to the url.
+		// looks like this: "https://www.dropbox.com/1/oauth2/authorize?client_id=&lt;key_here&gt;&amp;response_type=code&amp;
+;redirect_uri=&lt;redirect_url_here&gt;"
+	});
+
+On the page where you redirected to, you will need to use the AccessToken method to get the users access token for api use. The
+redirect_url this time is only for validation, it will not need to redirect again.
+
+	node_dropbox.AccessToken('key', 'secret', 'access_code', 'redirect_url', function(err,
+body) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.Gruntfile" id="apidoc.element.node-dropbox.Gruntfile">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>Gruntfile
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-clear');
+
+  grunt.initConfig({
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/test.js']
+      }
+    },
+    watch: {
+      files: ['test/**', 'lib/**'],
+      tasks: ['clear', 'mochaTest']
+    }
+  });
+
+  grunt.registerTask('default', 'mochaTest');
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.api" id="apidoc.element.node-dropbox.api">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>api
+        <span class="apidocSignatureSpan">(access_token)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">api = function (access_token) {
+
+  var access_token = access_token;
+
+  return {
+    account: function(cb) {
+      options = optionsBuilder(apiRoot + api.account, access_token);
+      request.get(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    createDir: function(path, cb) {
+      options = postBuilder(apiRoot + api.fileops.createFolder,
+        {root:"auto", path:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    removeDir: function(path, cb) {
+      options = postBuilder(apiRoot + api.fileops.remove,
+        {root:"auto", path:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+    moveSomething: function(from, to, cb) {
+      options = postBuilder(apiRoot + api.fileops.move,
+        {root:"auto", from_path:from, to_path:to}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+    createFile: function(path, body, cb) {
+      options = {
+        method: "PUT",
+        url: apiContentRoot + api.putFiles + "/auto/" + path,
+        headers: {
+          "Content-Length": getByteLength(body),
+          "Authorization": "Bearer " + access_token
+        },
+        json: true,
+        body: body
+      }
+
+      request(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    removeFile: function(path, cb) {
+      options = postBuilder(apiRoot + api.fileops.remove,
+        {root: "auto", path:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+<span class="apidocCodeCommentSpan">    /**
+     * get the metadata of a file or folder
+     * the result body.contents can be used to list a folder's content
+     */
+</span>    getMetadata: function(path, cb) {
+      options = optionsBuilder(apiRoot + api.metadata + "/auto/" + path, access_token);
+      request.get(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+    /**
+     * Downloads a file.
+     */
+    getFile: function(path, cb) {
+      options = optionsBuilder(apiContentRoot + api.getFiles + '/auto' + path, access_token);
+
+      request(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    /**
+     * Let connect pipe to downloaded file.
+     */
+    getFilePipe: function(path, cb) {
+      options = optionsBuilder(apiContentRoot + api.getFiles + '/auto' + path, access_token);
+
+      return request(options, cb)
+    },
+
+    /**
+     * Gets changes to files and folders in a user's Dropbox.
+     */
+    getDelta: function(cursor, path, cb) {
+      options = postBuilder(apiRoot + '/delta',
+        {cursor:cursor, path_prefix:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    /**
+     * Gets notifications from server
+     */
+    getNotifications: function(cursor, timeout, cb) {
+      var cursor = cursor || null,
+        timeout = timeout || 480,
+        url = apiLongPoll + '?cursor=' + cursor + '&amp;timeout=' + timeout;
+
+      request.get(url, function(err, res, body) {
+        cb(err, res, body);
+      });
+    }
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		access_token = body.access_token;
+	});
+
+#### Make API Calls
+
+When you have the access token in hand, all you need to do is make api calls. That's all it takes to get started with this
+client.
+
+	api = node_dropbox.<span class="apidocCodeKeywordSpan">api</span>(access_token);
+	api.account(function(err, res, body) {
+		console.log(body);
+	});
+
+The above output will be something like:
+
+	{
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-dropbox.AccessToken" id="apidoc.module.node-dropbox.AccessToken">module node-dropbox.AccessToken</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.AccessToken.AccessToken" id="apidoc.element.node-dropbox.AccessToken.AccessToken">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>AccessToken
+        <span class="apidocSignatureSpan">(ckey, csecret, auth_code, redirect_url, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">AccessToken = function (ckey, csecret, auth_code, redirect_url, cb) {
+  var url = apiRoot + '/oauth2/token';
+  var body = {
+    "code": auth_code,
+    "grant_type": "authorization_code",
+    "redirect_uri": redirect_url,
+    "client_id": ckey,
+    "client_secret": csecret
+  };
+
+  request.post(url, {form: body, json: true}, function(err, res, body) {
+    cb(err, body);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+	node_dropbox.Authenticate('key', 'secret', 'redirect_url', function(err, url){
+		// redirect user to the url.
+		// looks like this: "https://www.dropbox.com/1/oauth2/authorize?client_id=&lt;key_here&gt;&amp;response_type=code&amp;
+;redirect_uri=&lt;redirect_url_here&gt;"
+	});
+
+On the page where you redirected to, you will need to use the AccessToken method to get the users access token for api use. The
+redirect_url this time is only for validation, it will not need to redirect again.
+
+	node_dropbox.<span class="apidocCodeKeywordSpan">AccessToken</span>('key', 'secret', 'access_code'
+;, 'redirect_url', function(err, body) {
+		access_token = body.access_token;
+	});
+
+#### Make API Calls
+
+When you have the access token in hand, all you need to do is make api calls. That's all it takes to get started with this
+client.
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-dropbox.Authenticate" id="apidoc.module.node-dropbox.Authenticate">module node-dropbox.Authenticate</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.Authenticate.Authenticate" id="apidoc.element.node-dropbox.Authenticate.Authenticate">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>Authenticate
+        <span class="apidocSignatureSpan">(ckey, csecret, redirect_uri, cb)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Authenticate = function (ckey, csecret, redirect_uri, cb) {
+  var err = "";
+  var redirect_url = "";
+
+  if(ckey === "" || csecret === "" || redirect_uri === "") {
+    err = "Missing client key and/or client secret key.";
+  }else{
+    redirect_url = authUrl + "client_id=" + ckey + "&amp;response_type=code&amp;redirect_uri=" + redirect_uri;
+  }
+
+  cb(err, redirect_url);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+Before starting anything you need to go create your app over at: https://www.dropbox.com/developers/apps then go ahead and grab
+your Key and Secret.
+
+#### Authentication
+
+Just use the Authenticate method to generate a url for your user to go to. This will be redirected back to another page.
+
+	var node_dropbox = require('node-dropbox');
+	node_dropbox.<span class="apidocCodeKeywordSpan">Authenticate</span>('key', 'secret', 'redirect_url'
+;, function(err, url){
+		// redirect user to the url.
+		// looks like this: "https://www.dropbox.com/1/oauth2/authorize?client_id=&lt;key_here&gt;&amp;response_type=code&amp;
+;redirect_uri=&lt;redirect_url_here&gt;"
+	});
+
+On the page where you redirected to, you will need to use the AccessToken method to get the users access token for api use. The
+redirect_url this time is only for validation, it will not need to redirect again.
+
+	node_dropbox.AccessToken('key', 'secret', 'access_code', 'redirect_url', function(err,
+body) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-dropbox.Gruntfile" id="apidoc.module.node-dropbox.Gruntfile">module node-dropbox.Gruntfile</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.Gruntfile.Gruntfile" id="apidoc.element.node-dropbox.Gruntfile.Gruntfile">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>Gruntfile
+        <span class="apidocSignatureSpan">(grunt)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">Gruntfile = function (grunt) {
+
+  grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-clear');
+
+  grunt.initConfig({
+    mochaTest: {
+      test: {
+        options: {
+          reporter: 'spec'
+        },
+        src: ['test/test.js']
+      }
+    },
+    watch: {
+      files: ['test/**', 'lib/**'],
+      tasks: ['clear', 'mochaTest']
+    }
+  });
+
+  grunt.registerTask('default', 'mochaTest');
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.node-dropbox.api" id="apidoc.module.node-dropbox.api">module node-dropbox.api</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.node-dropbox.api.api" id="apidoc.element.node-dropbox.api.api">
+        function <span class="apidocSignatureSpan">node-dropbox.</span>api
+        <span class="apidocSignatureSpan">(access_token)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">api = function (access_token) {
+
+  var access_token = access_token;
+
+  return {
+    account: function(cb) {
+      options = optionsBuilder(apiRoot + api.account, access_token);
+      request.get(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    createDir: function(path, cb) {
+      options = postBuilder(apiRoot + api.fileops.createFolder,
+        {root:"auto", path:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    removeDir: function(path, cb) {
+      options = postBuilder(apiRoot + api.fileops.remove,
+        {root:"auto", path:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+    moveSomething: function(from, to, cb) {
+      options = postBuilder(apiRoot + api.fileops.move,
+        {root:"auto", from_path:from, to_path:to}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+    createFile: function(path, body, cb) {
+      options = {
+        method: "PUT",
+        url: apiContentRoot + api.putFiles + "/auto/" + path,
+        headers: {
+          "Content-Length": getByteLength(body),
+          "Authorization": "Bearer " + access_token
+        },
+        json: true,
+        body: body
+      }
+
+      request(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    removeFile: function(path, cb) {
+      options = postBuilder(apiRoot + api.fileops.remove,
+        {root: "auto", path:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+<span class="apidocCodeCommentSpan">    /**
+     * get the metadata of a file or folder
+     * the result body.contents can be used to list a folder's content
+     */
+</span>    getMetadata: function(path, cb) {
+      options = optionsBuilder(apiRoot + api.metadata + "/auto/" + path, access_token);
+      request.get(options, function(err, res, body) {
+        cb(err, res, body);
+      });
+    },
+
+    /**
+     * Downloads a file.
+     */
+    getFile: function(path, cb) {
+      options = optionsBuilder(apiContentRoot + api.getFiles + '/auto' + path, access_token);
+
+      request(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    /**
+     * Let connect pipe to downloaded file.
+     */
+    getFilePipe: function(path, cb) {
+      options = optionsBuilder(apiContentRoot + api.getFiles + '/auto' + path, access_token);
+
+      return request(options, cb)
+    },
+
+    /**
+     * Gets changes to files and folders in a user's Dropbox.
+     */
+    getDelta: function(cursor, path, cb) {
+      options = postBuilder(apiRoot + '/delta',
+        {cursor:cursor, path_prefix:path}, access_token);
+      request.post(options, function(err, res, body) {
+        cb(err, res, body);
+      })
+    },
+
+    /**
+     * Gets notifications from server
+     */
+    getNotifications: function(cursor, timeout, cb) {
+      var cursor = cursor || null,
+        timeout = timeout || 480,
+        url = apiLongPoll + '?cursor=' + cursor + '&amp;timeout=' + timeout;
+
+      request.get(url, function(err, res, body) {
+        cb(err, res, body);
+      });
+    }
+  }
+
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+		access_token = body.access_token;
+	});
+
+#### Make API Calls
+
+When you have the access token in hand, all you need to do is make api calls. That's all it takes to get started with this
+client.
+
+	api = node_dropbox.<span class="apidocCodeKeywordSpan">api</span>(access_token);
+	api.account(function(err, res, body) {
+		console.log(body);
+	});
+
+The above output will be something like:
+
+	{
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
