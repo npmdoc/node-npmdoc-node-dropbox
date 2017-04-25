@@ -1,4 +1,7 @@
-# api documentation for  [node-dropbox (v0.1.8)](https://github.com/g33kidd/node-dropbox#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-dropbox.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-dropbox) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-dropbox.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-dropbox)
+# npmdoc-node-dropbox
+
+#### basic api documentation for  [node-dropbox (v0.1.8)](https://github.com/g33kidd/node-dropbox#readme)  [![npm package](https://img.shields.io/npm/v/npmdoc-node-dropbox.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-node-dropbox) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-node-dropbox.svg)](https://travis-ci.org/npmdoc/node-npmdoc-node-dropbox)
+
 #### A simple Dropbox API client for node.js
 
 [![NPM](https://nodei.co/npm/node-dropbox.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/node-dropbox)
@@ -61,7 +64,8 @@
         "url": "git+https://github.com/g33kidd/node-dropbox.git"
     },
     "scripts": {},
-    "version": "0.1.8"
+    "version": "0.1.8",
+    "bin": {}
 }
 ```
 
